@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-local-secret-key')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']  # Railway handles host automatically
 
 # ---------------------------------------------------------
 # APPLICATION DEFINITION
@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dashboard',  # your main app
+    'dashboard',  # your main app folder inside sip_yfinace_web
 ]
 
 MIDDLEWARE = [
@@ -37,12 +37,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# ---------------------------------------------------------
+# ROOT & WSGI
+# ---------------------------------------------------------
 ROOT_URLCONF = 'sip_yfinace_web.urls'
+WSGI_APPLICATION = 'sip_yfinace_web.wsgi.application'
 
+# ---------------------------------------------------------
+# TEMPLATES
+# ---------------------------------------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # templates folder
+        'DIRS': [os.path.join(BASE_DIR, 'sip_yfinace_web', 'dashboard', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,13 +62,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'sip_yfinace_web.wsgi.application'
-
 # ---------------------------------------------------------
 # DATABASE
 # ---------------------------------------------------------
-# Default: SQLite (local)
-# Railway auto-overrides this with Postgres if available
 DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}",
@@ -89,11 +92,15 @@ USE_I18N = True
 USE_TZ = True
 
 # ---------------------------------------------------------
-# STATIC FILES
+# STATIC FILES (CSS, JS, IMAGES)
 # ---------------------------------------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# static inside your dashboard app
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'sip_yfinace_web', 'dashboard', 'static'),
+]
 
 # ---------------------------------------------------------
 # DEFAULT PRIMARY KEY FIELD TYPE
