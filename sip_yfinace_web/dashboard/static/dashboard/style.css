@@ -1,0 +1,180 @@
+/* ==============================
+   GENERAL PAGE DESIGN
+============================== */
+body {
+  font-family: "Times New Roman", serif;
+  background: #f6f7fb;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+main {
+  padding-bottom: 40px;
+}
+
+/* ==============================
+   FORM STYLING
+============================== */
+form {
+  background: white;
+  padding: 20px;
+  width: 400px;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #111827;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+  font-family: "Times New Roman", serif;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 14px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+/* ==============================
+   SECTIONS & LAYOUTS
+============================== */
+section {
+  background: white;
+  padding: 20px;
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  color: #111827;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 5px;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #1e293b;
+}
+
+p {
+  margin: 6px 0;
+}
+
+/* ==============================
+   IMAGES & GRAPHS
+============================== */
+img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ==============================
+   RESULTS SUMMARY TABLE
+============================== */
+.results-summary {
+  background: white;
+  padding: 20px;
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  font-family: "Times New Roman", serif;
+}
+
+.summary-table th {
+  background: #1d4ed8;
+  color: white;
+  padding: 8px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.summary-table td {
+  border-bottom: 1px solid #eee;
+  padding: 6px 8px;
+}
+
+.summary-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+/* ==============================
+   RECOMMENDATIONS SECTION
+============================== */
+.recommendations ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.recommendations li {
+  background: #f9fafb;
+  border-left: 4px solid #2563eb;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.recommendations li b {
+  color: #1d4ed8;
+}
+
+/* ==============================
+   CONCLUSION BOX
+============================== */
+.conclusion-box {
+  background: #f3f4f6;
+  border-left: 4px solid #10b981;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+  font-family: "Times New Roman", serif;
+}

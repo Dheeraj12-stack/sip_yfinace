@@ -1,0 +1,103 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+<form method="post" class="form">
+  {% csrf_token %}
+  <label>SIP Amount (₹)</label>
+  <input type="number" name="sip_amount" value="{{ sip_amount|default:2000 }}" required>
+
+  <label>Expected Annual Return (%)</label>
+  <input type="number" name="expected_return" step="0.1" value="{{ expected_return|default:12 }}" required>
+
+  <label>Duration (Years)</label>
+  <input type="number" name="duration_years" value="{{ duration_years|default:10 }}" required>
+
+  <label>Forecast Horizon (Months)</label>
+  <input type="number" name="horizon" value="{{ horizon|default:6 }}" required>
+
+  <button type="submit">Run AI Analysis</button>
+</form>
+
+{% if result_ready %}
+
+<!-- 📊 RESULTS SUMMARY SECTION -->
+<section class="results-summary">
+  <h2>Results Summary</h2>
+
+  <table class="summary-table">
+    <tr>
+      <th colspan="2">User Input Data</th>
+    </tr>
+    <tr><td>SIP Amount:</td><td>₹{{ sip_amount }}</td></tr>
+    <tr><td>Expected Return:</td><td>{{ expected_return }}%</td></tr>
+    <tr><td>Duration:</td><td>{{ duration_years }} years</td></tr>
+    <tr><td>Forecast Horizon:</td><td>{{ horizon }} months</td></tr>
+
+    <tr><th colspan="2">Calculated Results (Formula-Based)</th></tr>
+    <tr><td>Total Invested:</td><td>₹{{ sip.invested|floatformat:2 }}</td></tr>
+    <tr><td>Future Value:</td><td>₹{{ sip.future_value|floatformat:2 }}</td></tr>
+    <tr><td>Total Gain:</td><td>₹{{ sip.gain|floatformat:2 }}</td></tr>
+
+    <tr><th colspan="2">AI Predicted Results</th></tr>
+    <tr><td>Predicted Avg Return:</td><td>{{ insights.avg_predicted_return|floatformat:4 }}</td></tr>
+    <tr><td>AI Recommendation:</td><td>{{ insights.recommendation }}</td></tr>
+  </table>
+</section>
+
+<!-- 📈 GRAPHS SECTION -->
+<section>
+  <h2>Performance & Forecast Analysis</h2>
+
+  <h3>1️⃣ Predicted vs Actual Performance</h3>
+  <img src="data:image/png;base64,{{ graph_predicted_vs_actual }}" alt="Predicted vs Actual Graph">
+
+  <h3>2️⃣ Forecast (Next {{ horizon }} Months)</h3>
+  <img src="data:image/png;base64,{{ graph_forecast }}" alt="Forecast Graph">
+
+  <h3>3️⃣ SIP Value Distribution (AI-Based Projection)</h3>
+  <img src="data:image/png;base64,{{ graph_pie }}" alt="SIP Composition Graph">
+</section>
+
+<!-- 💡 AI RECOMMENDATIONS -->
+<section>
+  <h2>AI Recommendations & Suggestions</h2>
+  <div class="recommendations">
+    <ul>
+      {% for line in recommendations %}
+      <li>
+        <b>•</b> {{ line.0 }} <br>
+        <b>•</b> {{ line.1 }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- 🧠 CONCLUSION -->
+<section>
+  <h2>Conclusion</h2>
+  <div class="conclusion-box">
+    <p style="font-size:16px; line-height:1.6; text-align:justify;">{{ conclusion }}</p>
+  </div>
+</section>
+
+{% elif error %}
+<p style="color:red;">Error: {{ error }}</p>
+{% endif %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const inputs = document.querySelectorAll("form input");
+  inputs.forEach((input, index) => {
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const nextInput = inputs[index + 1];
+        if (nextInput) nextInput.focus();
+      }
+    });
+  });
+});
+</script>
+
+{% endblock %}
