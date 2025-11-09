@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+import sip_yfinace.views as views  # ✅ Explicit import fixes the error
 
 urlpatterns = [
-    path('', views.dashboard, name='dashboard'),  # Your main homepage view
+    path('', views.dashboard, name='dashboard'),  # or your main homepage view
 ]
