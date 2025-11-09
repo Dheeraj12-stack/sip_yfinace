@@ -1,1 +1,1 @@
-web: gunicorn sip_yfinace.wsgi
+web: gunicorn sip_yfinace.wsgi:application
