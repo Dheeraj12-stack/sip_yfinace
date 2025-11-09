@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-local-secret-key')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ['*']  # Railway handles host automatically
+ALLOWED_HOSTS = ['*', 'web-production-5aa2c.up.railway.app'] # Railway handles host automatically
 
 # ---------------------------------------------------------
 # APPLICATION DEFINITION

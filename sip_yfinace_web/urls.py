@@ -1,8 +1,9 @@
+# C:\djangoprojects\sip_yfinace\sip_yfinace_web\urls.py
+
 from django.contrib import admin
-from django.urls import path
-from sip_yfinace import views
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.dashboard, name='dashboard'),  # root route -> your main view
+    path('', include('sip_yfinace.urls')),  # Connects project to your app
 ]
